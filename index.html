@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>100 Things I Like About You</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #4a2a18 0%,
+            #241207 55%,
+            #120904 100%
+        );
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    padding: 12px 20px;
+
+    gap: 16px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   BOOK STAGE
+========================================================= */
+
+.stage-container {
+    width: 100%;
+    max-width: 1050px;
+    height: min(650px, calc(100svh - 110px));
+    min-height: 420px;
+
+    perspective: 2800px;
+}
+
+
+/* =========================================================
+   HARD COVER
+========================================================= */
+
+.book-binding {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+
+    background:
+        linear-gradient(
+            135deg,
+            #651d20,
+            #451014 45%,
+            #2d090b
+        );
+
+    border-radius:
+        9px 18px 18px 9px;
+
+    padding: 10px;
+
+    box-shadow:
+
+        0 35px 70px rgba(0,0,0,.75),
+
+        0 15px 25px rgba(0,0,0,.5),
+
+        inset 0 0 18px rgba(0,0,0,.55);
+
+    transform:
+        rotateX(8deg)
+        rotateY(-1deg);
+}
+
+
+/* leather texture */
+
+.book-binding::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border-radius: 8px 15px 15px 8px;
+
+    pointer-events: none;
+
+    opacity: .15;
+
+    background-image:
+        radial-gradient(
+            rgba(255,255,255,.4) .7px,
+            transparent .7px
+        );
+
+    background-size: 5px 5px;
+}
+
+
+/* =========================================================
+   PAPER STACK
+========================================================= */
+
+.paper-stack {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+
+    background: #e5d5b9;
+
+    border-radius:
+        5px 12px 12px 5px;
+
+    box-shadow:
+
+        inset -3px 0 0 #c8b897,
+        inset 3px 0 0 #c8b897,
+
+        0 1px 0 #f2e5cf,
+        0 2px 0 #aa9a7d,
+        0 3px 0 #f2e5cf,
+        0 4px 0 #aa9a7d,
+        0 5px 0 #f2e5cf,
+        0 6px 0 #aa9a7d,
+        0 7px 0 #f2e5cf,
+        0 8px 0 #95856b;
+}
+
+
+/* =========================================================
+   SPINE
+========================================================= */
+
+.spine-shadow {
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 50px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            to right,
+
+            rgba(0,0,0,.28),
+
+            rgba(0,0,0,.07) 25%,
+
+            transparent 50%,
+
+            rgba(0,0,0,.07) 75%,
+
+            rgba(0,0,0,.28)
+        );
+
+    pointer-events: none;
+
+    z-index: 50;
+}
+
+
+/* =========================================================
+   UNIVERSAL PAGE
+========================================================= */
+
+.page {
+
+    width: 50%;
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+
+    color: #2b2118;
+
+    line-height: 1.6;
+
+    font-size: 1rem;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.4),
+            transparent 70%
+        ),
+        #fffaf0;
+
+    overflow: hidden;
+}
+
+
+/* paper grain */
+
+.page::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .22;
+
+    background-image:
+        radial-gradient(
+            rgba(80,60,40,.12) .55px,
+            transparent .55px
+        );
+
+    background-size: 5px 5px;
+}
+
+
+/* =========================================================
+   STATIC LEFT / RIGHT
+========================================================= */
+
+.base-left {
+
+    left: 0;
+
+    border-radius:
+        4px 0 0 4px;
+
+    padding:
+        50px 65px 50px 60px;
+
+    background:
+        linear-gradient(
+            to right,
+            #fffaf0 88%,
+            #e4d6bb
+        );
+}
+
+
+.base-right {
+
+    left: auto;
+
+    right: 0;
+
+    border-radius:
+        0 10px 10px 0;
+
+    padding:
+        50px 60px 50px 65px;
+
+    background:
+        linear-gradient(
+            to left,
+            #fffaf0 88%,
+            #e4d6bb
+        );
+}
+
+
+/* =========================================================
+   FLIPPING SHEET
+========================================================= */
+
+.flip-sheet {
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 50%;
+    height: 100%;
+
+    transform-origin:
+        left center;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 1s
+        cubic-bezier(.45,0,.15,1);
+
+    z-index: 20;
+}
+
+
+.flip-sheet.flipped {
+
+    transform:
+        rotateY(-180deg);
+}
+
+
+/* =========================================================
+   SHEET FRONT
+========================================================= */
+
+.sheet-front {
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    padding:
+        50px 60px 50px 65px;
+
+    border-radius:
+        0 10px 10px 0;
+
+    background:
+        linear-gradient(
+            to left,
+            #fffaf0 88%,
+            #e4d6bb
+        );
+
+    backface-visibility:
+        hidden;
+
+    transform:
+        rotateY(0deg);
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   SHEET BACK
+========================================================= */
+
+.sheet-back {
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    padding:
+        50px 65px 50px 60px;
+
+    border-radius:
+        4px 0 0 4px;
+
+    background:
+        linear-gradient(
+            to right,
+            #fffaf0 88%,
+            #e4d6bb
+        );
+
+    backface-visibility:
+        hidden;
+
+    transform:
+        rotateY(180deg);
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   PAGE NUMBERS
+========================================================= */
+
+.page-counter {
+
+    position: absolute;
+
+    bottom: 22px;
+
+    font-size: .75rem;
+
+    letter-spacing: 2px;
+
+    color: #9c8d76;
+
+    z-index: 5;
+}
+
+
+.base-left .page-counter,
+.sheet-back .page-counter {
+
+    left: 30px;
+}
+
+
+.base-right .page-counter,
+.sheet-front .page-counter {
+
+    right: 30px;
+}
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+.chapter-heading {
+
+    text-align: center;
+
+    font-weight: normal;
+
+    font-variant:
+        small-caps;
+
+    letter-spacing: 3px;
+
+    font-size: 1.35rem;
+
+    color: #4a2b16;
+
+    margin-bottom: 28px;
+
+    padding-bottom: 10px;
+
+    border-bottom:
+        1px double #d4c5a9;
+}
+
+
+.section-title {
+
+    text-align: center;
+
+    font-size: 1.5rem;
+
+    color: #6b2528;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 28px;
+}
+
+
+.section-title span {
+
+    color: #a08055;
+}
+
+
+.first-list-heading {
+
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+
+    line-height: 1.25;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   COVER
+========================================================= */
+
+.cover {
+
+    padding: 0 !important;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #7a292d,
+            #51171a 60%,
+            #300b0d
+        );
+}
+
+
+/* cover border */
+
+.cover::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 20px;
+
+    border:
+        1px solid
+        rgba(226,196,140,.5);
+
+    z-index: 3;
+}
+
+
+.cover-small {
+
+    color:
+        #d7bb8c;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: .72rem;
+
+    letter-spacing: 5px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom: 25px;
+}
+
+
+.cover-heart {
+
+    font-size: 60px;
+
+    color: #ead7b1;
+
+    margin-bottom: 20px;
+}
+
+
+.cover h1 {
+
+    color: #f6e7cb;
+
+    font-size:
+        clamp(35px,5vw,62px);
+
+    line-height: 1;
+
+    font-weight: normal;
+}
+
+
+.cover-line {
+
+    width: 70px;
+
+    height: 1px;
+
+    background: #c6a66d;
+
+    margin: 28px 0;
+}
+
+
+.cover-sub {
+
+    color: #d8bea0;
+
+    font-style: italic;
+
+    font-size: 1rem;
+}
+
+
+.closed-cover {
+
+    position: absolute;
+
+    top: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    z-index: 3000;
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 12px;
+
+    box-shadow: inset 0 0 35px rgba(0,0,0,.45);
+
+    backface-visibility: hidden;
+
+    transform-origin: left center;
+
+    transition: transform 1s cubic-bezier(.45,0,.15,1);
+}
+
+
+.closed-cover.opened {
+
+    transform: rotateY(-180deg);
+
+    pointer-events: none;
+}
+
+
+.inside-cover {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.inside-cover h1 {
+
+    max-width: 100%;
+
+    color: #64272a;
+
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+
+    font-weight: normal;
+
+    line-height: 1.35;
+}
+
+
+.inside-cover h1 span {
+
+    color: #8b454b;
+
+    font-style: italic;
+}
+
+
+.inside-cover p {
+
+    margin-top: 18px;
+
+    color: #9b8970;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   BIRTHDAY WISH
+========================================================= */
+
+.birthday {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.birthday-symbol {
+
+    font-size: 24px;
+
+    color: #8d4a4f;
+
+    margin-bottom: 12px;
+}
+
+
+.birthday h1 {
+
+    font-weight: normal;
+
+    font-size: clamp(1.4rem, 2.1vw, 1.75rem);
+
+    color: #64272a;
+
+    margin-bottom: 25px;
+}
+
+
+.birthday p {
+
+    max-width: 420px;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+    text-align: center;
+
+    color: #4b4036;
+}
+
+
+.closing-wish .birthday-symbol {
+    margin-bottom: 5px;
+}
+
+
+.closing-wish h1 {
+    margin-bottom: 12px;
+}
+
+
+.closing-wish p {
+    font-size: .84rem;
+    line-height: 1.45;
+}
+
+
+.closing-wish .birthday-sign {
+    margin-top: 12px;
+}
+
+
+.birthday-sign {
+
+    margin-top: 28px;
+
+    font-style: italic;
+
+    color: #9b8970;
+}
+
+
+/* =========================================================
+   LIST
+========================================================= */
+
+.things {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    height: 100%;
+}
+
+
+.thing {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 8px;
+
+    font-size:
+        clamp(.78rem,1.3vw,.98rem);
+
+    line-height: 1.35;
+}
+
+
+.number {
+
+    min-width: 25px;
+
+    color: #8b454b;
+
+    font-size: .72rem;
+
+    padding-top: 2px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-weight: bold;
+}
+
+
+.thing-text {
+
+    flex: 1;
+}
+
+
+/* =========================================================
+   SINGLE 95–100
+========================================================= */
+
+.single {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.single-number {
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: .72rem;
+
+    letter-spacing: 5px;
+
+    color: #9c7952;
+
+    margin-bottom: 35px;
+}
+
+
+.single-number::before,
+.single-number::after {
+
+    content: "—";
+
+    margin: 0 12px;
+
+    color: #c4a474;
+}
+
+
+.single-text {
+
+    max-width: 430px;
+
+    font-size:
+        clamp(1.5rem,2.8vw,2.2rem);
+
+    line-height: 1.4;
+
+    color: #3e3028;
+}
+
+
+.single-heart {
+
+    margin-top: 35px;
+
+    font-size: 22px;
+
+    color: #8b454b;
+}
+
+
+.final .single-text {
+
+    font-size:
+        clamp(1.8rem,3.3vw,2.7rem);
+
+    color: #68282d;
+}
+
+
+/* =========================================================
+   BLANK PAGE
+========================================================= */
+
+.blank-page {
+
+    background:
+        #fffaf0;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation-dock {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    background:
+        rgba(0,0,0,.35);
+
+    padding:
+        10px 20px;
+
+    border-radius:
+        50px;
+
+    backdrop-filter:
+        blur(8px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.4);
+}
+
+
+.dock-btn {
+
+    background:
+        #e2d2b5;
+
+    color:
+        #3d2314;
+
+    border:
+        1px solid #bda885;
+
+    padding:
+        11px 24px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: .8rem;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        1px;
+
+    cursor:
+        pointer;
+
+    border-radius:
+        25px;
+
+    transition:
+        .25s;
+}
+
+
+.dock-btn:hover:not(:disabled) {
+
+    background:
+        #fffaf0;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.dock-btn:disabled {
+
+    opacity: .35;
+
+    cursor:
+        not-allowed;
+}
+
+
+.page-status {
+
+    color:
+        #dbcdb4;
+
+    font-size: .75rem;
+
+    min-width: 80px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:820px) {
+
+    body {
+
+        background:
+            #1b0d07;
+
+        padding: 15px;
+
+        overflow-y: auto;
+
+        justify-content: flex-start;
+    }
+
+
+    .stage-container {
+
+        height: auto;
+
+        perspective: none;
+    }
+
+
+    .book-binding {
+
+        height: auto;
+
+        transform: none;
+
+        background: none;
+
+        padding: 0;
+
+        box-shadow: none;
+    }
+
+
+    .paper-stack {
+
+        height: auto;
+
+        background: none;
+
+        box-shadow: none;
+    }
+
+
+    .spine-shadow {
+
+        display: none;
+    }
+
+
+    .page {
+
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: 500px;
+
+        display: block;
+
+        margin-bottom: 15px;
+
+        border-radius: 5px !important;
+
+        padding: 40px 25px !important;
+
+        box-shadow:
+            0 8px 20px
+            rgba(0,0,0,.3);
+    }
+
+
+    .flip-sheet {
+
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+
+        display: block;
+
+        transform: none !important;
+    }
+
+
+    .sheet-front,
+    .sheet-back {
+
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: 500px;
+
+        transform: none;
+
+        border-radius: 5px !important;
+
+        margin-bottom: 15px;
+
+        padding: 40px 25px !important;
+    }
+
+
+    .cover {
+
+        min-height: 600px;
+    }
+
+
+    .navigation-dock {
+
+        margin-bottom: 20px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<main class="stage-container">
+
+<div class="book-binding">
+
+<div class="paper-stack">
+
+<div class="spine-shadow"></div>
+
+
+<!-- =====================================================
+     STATIC LEFT PAGE
+===================================================== -->
+
+<section
+    class="page base-left"
+    id="left-page"
+>
+</section>
+
+
+<!-- =====================================================
+     STATIC RIGHT PAGE
+===================================================== -->
+
+<section
+    class="page base-right"
+    id="right-page"
+>
+</section>
+
+
+<!-- =====================================================
+     FLIPPING SHEETS
+===================================================== -->
+
+<div id="sheets"></div>
+
+
+<div
+    class="closed-cover cover"
+    id="closed-cover"
+></div>
+
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="navigation-dock">
+
+<button
+    class="dock-btn"
+    id="previous"
+>
+    ← Previous
+</button>
+
+
+<div
+    class="page-status"
+    id="status"
+>
+    Cover
+</div>
+
+
+<button
+    class="dock-btn"
+    id="next"
+>
+    Next →
+</button>
+
+</nav>
+
+
+
+<script>
+
+/* =========================================================
+   100 THINGS
+========================================================= */
+
+const things = [
+"I like your smile.",
+"I like your laugh.",
+"I like the way you talk.",
+"I like your sense of humor.",
+"I like how you make conversations interesting.",
+"I like your honesty.",
+"I like your kindness.",
+"I like your confidence.",
+"I like how intelligent you are.",
+"I like how curious you are.",
+
+"I like how excited you get about things you love.",
+"I like your little reactions.",
+"I like your random jokes.",
+"I like your voice.",
+"I like the way you say certain things.",
+"I like how patient you can be.",
+"I like your determination.",
+"I like how much you care about people.",
+"I like your loyalty.",
+"I like your personality.",
+
+"I like how you remember little things.",
+"I like your opinions.",
+"I like your creativity.",
+"I like your ambition.",
+"I like how you express yourself.",
+"I like your energy.",
+"I like how spontaneous you can be.",
+"I like the way you tease people.",
+"I like your playful side.",
+"I like your serious side too.",
+
+"I like how you can make me laugh without even trying.",
+"I like how you can cheer people up.",
+"I like how you handle difficult situations.",
+"I like your little habits.",
+"I like your expressions.",
+"I like the way you react when you're surprised.",
+"I like how passionate you get about things you love.",
+"I like how you have your own individuality.",
+"I like your generosity.",
+"I like how thoughtful you are.",
+
+"I like the way you listen.",
+"I like your maturity.",
+"I like your courage.",
+"I like how genuine you are.",
+"I like how you speak your mind.",
+"I like that you can admit when you're wrong.",
+"I like how you celebrate other people's happiness.",
+"I like how you always try to improve yourself.",
+"I like how patient you are with people you care about.",
+"I like how you can make ordinary conversations memorable.",
+
+"I like your random messages.",
+"I like your unexpected jokes.",
+"I like the way you get annoyed sometimes 😭.",
+"I like how happy you get over little things.",
+"I like your reactions to compliments.",
+"I like the way you tell stories.",
+"I like how you explain things.",
+"I like your random sense of humor.",
+"I like how you can make boring moments funny.",
+"I like how competitive you can get.",
+
+"I like your stubbornness sometimes 😭.",
+"I like your soft side.",
+"I like your strong side.",
+"I like how you stand up for yourself.",
+"I like how you treat the people you love.",
+"I like how you make people feel noticed.",
+"I like how unique you are.",
+"I like your confidence when you know you're right.",
+"I like how curious you are about random things.",
+"I like how you remember inside jokes.",
+
+"I like your little facial expressions.",
+"I like the way you react when you're embarrassed.",
+"I like how excited you get when something goes your way.",
+"I like how determined you become when something matters to you.",
+"I like how you make people feel comfortable around you.",
+"I like the way you communicate.",
+"I like how you never have to pretend to be someone else.",
+"I like your dreams.",
+"I like your goals.",
+"I like your values.",
+
+"I like how forgiving you can be.",
+"I like how willing you are to understand people.",
+"I like how you make memories feel special.",
+"I like your random thoughts.",
+"I like how unpredictable you can be sometimes.",
+"I like how you can be serious one moment and goofy the next.",
+"I like your natural charm.",
+"I like your presence.",
+"I like how you make me appreciate little moments.",
+"I like how you inspire me to become better.",
+
+"I like the memories I've made with you.",
+"I like the conversations I've had with you.",
+"I like the jokes only we understand.",
+"I like the little things you probably don't realize I notice.",
+
+"I like how you can change my mood without even trying.",
+"I like how comfortable I feel talking to you.",
+"I like that you're completely yourself.",
+"I like the happiness you bring into my day.",
+"I like the person you are becoming.",
+"I like you, exactly as you are. 🥹"
+];
+
+
+/* =========================================================
+   CONTENT GENERATORS
+   IMPORTANT:
+   These return CONTENT ONLY.
+   No nested .page elements.
+========================================================= */
+
+function coverContent() {
+
+return `
+    <div class="cover-small">
+        A little book for someone I like, made with love
+    </div>
+
+    <div class="cover-heart">
+        ♡
+    </div>
+
+    <h1>
+        For Someone<br>
+        Special
+    </h1>
+
+    <div class="cover-line"></div>
+
+    <div class="cover-sub">
+        made especially for someone I like, with love
+    </div>
+`;
+}
+
+
+function insideCoverContent() {
+
+return `
+    <div class="chapter-heading">A little note</div>
+
+    <h1>
+        That someone is you,<br>
+        <span>Zeemal.</span>
+    </h1>
+
+    <p>Made just for you, with love</p>
+`;
+}
+
+
+function birthdayContent() {
+
+return `
+    <div class="birthday-symbol">
+        ✦
+    </div>
+
+    <h1>HAPPY BIRTHDAY ZEEMAL!</h1>
+
+    <p>
+        This little book is for you. Includes 100 things out of millions I like about you, and a birthday wish to save for the end.
+    </p>
+
+    <div class="birthday-sign">
+        — made especially for you, Zeemal🙃 🫶 .
+    </div>
+`;
+}
+
+
+function closingWishContent() {
+
+return `
+    <div class="birthday-symbol">✦</div>
+
+    <h1>Wishing You the Best</h1>
+
+    <p>
+        Happy birthday, Zeemal! I hope your day is full of the kind of happiness you give to the people around you, and that the year ahead brings you new adventures, beautiful memories, and plenty of reasons to laugh. You deserve to feel celebrated not just today, but every day: for your kindness, your humor, your strength, and all the little things that make you so wonderfully you. Thank you for being someone who can make an ordinary moment brighter just by being there. I hope you keep chasing what makes you excited, feel proud of how far you have come, and always remember how much you are appreciated. May this next chapter be gentle when you need rest, exciting when you want adventure, and filled with people who care about you. Have the loveliest birthday, Zeemal. I’m really glad you’re in my life, and I hope this little book reminds you of that whenever you need a smile.
+    </p>
+
+    <div class="birthday-sign">With lots of umm efforts n love 🫶 </div>
+`;
+}
+
+
+function listContent(start, end) {
+
+const heading = start === 0
+    ? "100 Things Out of a Million I Like About You"
+    : `Things <span>${start + 1}–${end}</span>`;
+
+let html = `
+    <h2 class="section-title ${start === 0 ? "first-list-heading" : ""}">
+        ${heading}
+    </h2>
+`;
+
+for(let i = start; i < end; i++) {
+
+html += `
+    <div class="thing">
+        <span class="number">
+            ${i + 1}.
+        </span>
+
+        <span class="thing-text">
+            ${things[i]}
+        </span>
+    </div>
+`;
+
+}
+
+return html;
+}
+
+
+function singleContent(index) {
+
+return `
+    <div class="single-number">
+        ${index + 1}
+    </div>
+
+    <div class="single-text">
+        ${things[index]}
+    </div>
+
+    <div class="single-heart">
+        ♡
+    </div>
+`;
+}
+
+
+function blankContent() {
+    return "";
+}
+
+
+/* =========================================================
+   PAGE DATA
+========================================================= */
+
+const pages = [];
+/* INSIDE COVER */
+
+pages.push({
+    content: insideCoverContent(),
+    className: "inside-cover",
+    name: "Inside Cover"
+});
+
+
+/* BIRTHDAY */
+
+
+/* BIRTHDAY */
+
+pages.push({
+    content: birthdayContent(),
+    className: "birthday",
+    name: "Birthday"
+});
+
+
+/* 100 THINGS, IN ORDER */
+
+for(let start = 0; start < 100; start += 10) {
+
+    pages.push({
+        content: listContent(start, start + 10),
+        className: "things",
+        name: `${start + 1}–${start + 10}`
+    });
+
+}
+
+
+/* CLOSING BIRTHDAY WISH */
+
+pages.push({
+    content: closingWishContent(),
+    className: "birthday closing-wish",
+    name: "Birthday Wish"
+});
+
+
+/* =========================================================
+   PAGE RENDERER
+========================================================= */
+
+function renderPage(element, page, side) {
+
+    element.className =
+        `page ${page.className}`;
+
+    element.innerHTML =
+        page.content;
+
+    element.dataset.name =
+        page.name;
+
+    element.style.display =
+        "block";
+
+    element.style.position =
+        "absolute";
+
+    element.style.top =
+        "0";
+
+    element.style.height =
+        "100%";
+
+    element.style.width =
+        "50%";
+
+    if(side === "left") {
+
+        element.style.left =
+            "0";
+
+        element.style.right =
+            "auto";
+
+    } else {
+
+        element.style.right =
+            "0";
+
+        element.style.left =
+            "auto";
+
+    }
+}
+
+
+/* =========================================================
+   INITIAL COVER
+========================================================= */
+
+const leftPage =
+    document.getElementById("left-page");
+
+const rightPage =
+    document.getElementById("right-page");
+
+const closedCover =
+    document.getElementById("closed-cover");
+
+const sheetsContainer =
+    document.getElementById("sheets");
+
+
+renderPage(leftPage, pages[0], "left");
+
+rightPage.className =
+    "page base-right blank-page";
+
+rightPage.innerHTML = "";
+
+closedCover.innerHTML =
+    coverContent();
+
+
+/* =========================================================
+   CREATE PHYSICAL SHEETS
+========================================================= */
+
+const sheets = [];
+
+let pageIndex = 1;
+
+
+while(pageIndex < pages.length) {
+
+    const sheet =
+        document.createElement("div");
+
+    sheet.className =
+        "flip-sheet";
+
+    sheet.style.zIndex =
+        String(1000 - pageIndex);
+
+
+    /* FRONT */
+
+    const front =
+        document.createElement("div");
+
+    front.className =
+        `sheet-front page ${
+            pages[pageIndex].className
+        }`;
+
+    front.innerHTML =
+        pages[pageIndex].content;
+
+
+    /* BACK */
+
+    const back =
+        document.createElement("div");
+
+
+    if(pageIndex + 1 < pages.length) {
+
+        back.className =
+            `sheet-back page ${
+                pages[pageIndex + 1].className
+            }`;
+
+        back.innerHTML =
+            pages[pageIndex + 1].content;
+
+    } else {
+
+        back.className =
+            "sheet-back page blank-page";
+
+        back.innerHTML = "";
+
+    }
+
+
+    sheet.appendChild(front);
+    sheet.appendChild(back);
+
+    sheetsContainer.appendChild(sheet);
+
+    sheets.push(sheet);
+
+    pageIndex += 2;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const nextButton =
+    document.getElementById("next");
+
+const previousButton =
+    document.getElementById("previous");
+
+const status =
+    document.getElementById("status");
+
+
+let currentSpread = 0;
+let isCoverClosed = true;
+
+
+function updateSheetStack() {
+
+    sheets.forEach((sheet, index) => {
+
+        sheet.style.zIndex =
+            String(
+                index < currentSpread
+                    ? 100 + index
+                    : 1000 - index
+            );
+
+    });
+}
+
+
+function updateStatus() {
+
+    previousButton.disabled =
+        isCoverClosed;
+
+    nextButton.disabled =
+        !isCoverClosed && currentSpread >= sheets.length;
+
+
+    if(isCoverClosed) {
+
+        status.textContent =
+            "Cover";
+
+        return;
+    }
+
+
+    if(currentSpread === 0) {
+
+        status.textContent =
+            `${pages[0].name} / ${pages[1].name}`;
+
+        return;
+    }
+
+
+    if(currentSpread >= sheets.length) {
+
+        status.textContent =
+            pages[
+                Math.min(
+                    currentSpread * 2,
+                    pages.length - 1
+                )
+            ].name;
+
+        return;
+    }
+
+
+    const leftIndex =
+        currentSpread * 2;
+
+    const rightIndex =
+        currentSpread * 2 + 1;
+
+    const current =
+        pages[
+            Math.min(
+                leftIndex,
+                pages.length - 1
+            )
+        ];
+
+    const next =
+        pages[
+            Math.min(
+                rightIndex,
+                pages.length - 1
+            )
+        ];
+
+
+    if(next && next.name !== "Blank") {
+
+        status.textContent =
+            `${current.name} / ${next.name}`;
+
+    } else {
+
+        status.textContent =
+            current.name;
+
+    }
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+function nextPage() {
+
+    if(isCoverClosed) {
+
+        isCoverClosed = false;
+
+        closedCover.classList.add("opened");
+
+        updateStatus();
+
+        return;
+    }
+
+
+    if(currentSpread >= sheets.length)
+        return;
+
+
+    const sheet = sheets[currentSpread];
+
+    sheet.style.zIndex = "2000";
+
+    sheet.addEventListener(
+        "transitionend",
+        updateSheetStack,
+        { once: true }
+    );
+
+    sheet.classList.add("flipped");
+
+
+    currentSpread++;
+
+    updateStatus();
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+function previousPage() {
+
+    if(currentSpread <= 0) {
+
+        if(!isCoverClosed) {
+
+            isCoverClosed = true;
+
+            closedCover.classList.remove("opened");
+
+            updateStatus();
+
+        }
+
+        return;
+    }
+
+
+    currentSpread--;
+
+    const sheet = sheets[currentSpread];
+
+    sheet.style.zIndex = "2000";
+
+    sheet.addEventListener(
+        "transitionend",
+        updateSheetStack,
+        { once: true }
+    );
+
+    sheet.classList.remove("flipped");
+
+
+    updateStatus();
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+nextButton.addEventListener(
+    "click",
+    nextPage
+);
+
+previousButton.addEventListener(
+    "click",
+    previousPage
+);
+
+
+closedCover.addEventListener(
+    "click",
+    event => {
+        event.stopPropagation();
+
+        if(isCoverClosed)
+            nextPage();
+    }
+);
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "ArrowRight")
+            nextPage();
+
+        if(event.key === "ArrowLeft")
+            previousPage();
+
+    }
+);
+
+
+/* =========================================================
+   CLICK LEFT / RIGHT
+========================================================= */
+
+document
+.querySelector(".book-binding")
+.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target.closest(
+                ".navigation-dock"
+            )
+        )
+            return;
+
+
+        const rect =
+            event.currentTarget
+            .getBoundingClientRect();
+
+
+        const x =
+            event.clientX -
+            rect.left;
+
+
+        if(
+            x > rect.width / 2
+        )
+            nextPage();
+
+        else
+            previousPage();
+
+    }
+);
+
+
+/* =========================================================
+   SWIPE
+========================================================= */
+
+let touchStart = 0;
+
+
+document.addEventListener(
+    "touchstart",
+    event => {
+
+        touchStart =
+            event.changedTouches[0]
+            .screenX;
+
+    }
+);
+
+
+document.addEventListener(
+    "touchend",
+    event => {
+
+        const touchEnd =
+            event.changedTouches[0]
+            .screenX;
+
+
+        const distance =
+            touchEnd - touchStart;
+
+
+        if(distance < -60)
+            nextPage();
+
+
+        if(distance > 60)
+            previousPage();
+
+    }
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+updateStatus();
+
+</script>
+
+</body>
+</html>
